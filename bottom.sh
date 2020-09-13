@@ -226,7 +226,7 @@ fi
 
 git clone https://github.com/RunsetTech/wirapi2.git
 
-cd wirapi
+cd wirapi2
 cat > .env <<EOF
 # API server settings
 #PORT=8081
@@ -248,4 +248,30 @@ EOF
 sudo npm install
 
 
-sudo node .
+cd ..
+
+cat > ghost.sh <<EOF
+sudo node /home/ubuntu/wirapi/index.js
+EOF
+
+sudo cp ghost.sh /usr/bin/ghost.sh
+sudo chmod +x /usr/bin/ghost.sh
+
+cat > ghost.service <<EOF
+[Unit]
+Description=Ghost Service
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /usr/bin/ghost.sh
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo cp ghost.service /etc/systemd/system/ghost.service
+sudo chmod 644 /etc/systemd/system/ghost.service
+
+sudo systemctl start ghost
+sudo systemctl enable ghost
+
