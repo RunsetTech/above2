@@ -251,7 +251,7 @@ sudo npm install
 cd ..
 
 cat > ghost.sh <<EOF
-sudo node /home/ubuntu/wirapi/index.js
+sudo node /home/ubuntu/wirapi2/index.js
 EOF
 
 sudo cp ghost.sh /usr/bin/ghost.sh
