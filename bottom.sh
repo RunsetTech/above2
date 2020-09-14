@@ -275,5 +275,7 @@ sudo chmod 644 /etc/systemd/system/ghost.service
 sudo systemctl start ghost
 sudo systemctl enable ghost
 
+echo nimaaaa
+
 sudo reboot
 
